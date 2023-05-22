@@ -4,7 +4,15 @@ package com.example.telacupons
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.Text
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -205,6 +213,9 @@ fun Greeting(name: String) {
 
     var selectedWord by remember { mutableStateOf("disponiveis") }
 
+    var showAlert = remember { mutableStateOf(false) }
+
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -249,7 +260,8 @@ fun Greeting(name: String) {
             placeholder = {
                 Text(
                     "Busque por mercados por aqui...",
-                    style = MaterialTheme.typography.body1.copy(color = Color.White), modifier = Modifier.fillMaxSize()
+                    style = MaterialTheme.typography.body1.copy(color = Color.White),
+                    modifier = Modifier.fillMaxSize()
                 )
             },
             leadingIcon = {
@@ -319,30 +331,30 @@ fun Greeting(name: String) {
 
 
                 Text(text = "Resgatados",
-            modifier = Modifier
-                .background(
-                    color2,
-                    shape = RoundedCornerShape(topEnd = 4.dp, bottomEnd = 4.dp)
-                )
-                .clickable {
-                    selectedWord = "resgatados"
-                    DisponiveisClick = false
-                    ResgatadosClick = true
-                    isVisible = false
-                    color2 = Color(181, 116, 48)
-                    color1 = Color.Transparent
-                }
-                .padding(
-                    top = 4.dp,
-                    bottom = 4.dp,
-                )
-                .width(130.dp),
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center)
+                    modifier = Modifier
+                        .background(
+                            color2,
+                            shape = RoundedCornerShape(topEnd = 4.dp, bottomEnd = 4.dp)
+                        )
+                        .clickable {
+                            selectedWord = "resgatados"
+                            DisponiveisClick = false
+                            ResgatadosClick = true
+                            isVisible = false
+                            color2 = Color(181, 116, 48)
+                            color1 = Color.Transparent
+                        }
+                        .padding(
+                            top = 4.dp,
+                            bottom = 4.dp,
+                        )
+                        .width(130.dp),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center)
 
-    }
-}
+            }
+        }
 
         Column {
 
@@ -412,7 +424,9 @@ fun Greeting(name: String) {
                                         Image(
                                             painter = painterResource(R.drawable.retangulo),
                                             contentDescription = "Imagem",
-                                            modifier = Modifier.fillMaxWidth().height(80.dp)
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(80.dp)
                                         )
                                         Text(
                                             text = "100 pontos",
@@ -467,9 +481,6 @@ fun Greeting(name: String) {
                                 .offset(x = (2).dp)
                                 .background(Color.White, shape = CircleShape)
                         )
-
-
-
 
 
                     }
@@ -538,7 +549,9 @@ fun Greeting(name: String) {
                                         Image(
                                             painter = painterResource(R.drawable.retangulo),
                                             contentDescription = "Imagem",
-                                            modifier = Modifier.fillMaxWidth().height(80.dp)
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(80.dp)
                                         )
                                         Text(
                                             text = "100 pontos",
@@ -551,27 +564,27 @@ fun Greeting(name: String) {
 
                                     Spacer(modifier = Modifier.padding(5.dp))
 
-                                        Row(modifier = Modifier.padding(top = 13.dp))
+                                    Row(modifier = Modifier.padding(top = 13.dp))
+                                    {
+                                        Button(
+                                            onClick = {
+                                                val toCupomActivity =
+                                                    Intent(context, CupomCarrefour::class.java)
+                                                context.startActivity(toCupomActivity)
+                                            }, modifier = Modifier
+                                                .width(92.dp)
+                                                .height(32.dp),
+                                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
+                                        )
                                         {
-                                            Button(
-                                                onClick = {
-                                                    val toCupomActivity =
-                                                        Intent(context, CupomCarrefour::class.java)
-                                                    context.startActivity(toCupomActivity)
-                                                }, modifier = Modifier
-                                                    .width(92.dp)
-                                                    .height(32.dp),
-                                                colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
-                                            )
-                                            {
-                                                Text(text = "PEGUE", color = Color(8, 113, 19))
+                                            Text(text = "PEGUE", color = Color(8, 113, 19))
 
-                                            }
                                         }
-
                                     }
 
                                 }
+
+                            }
 
 
                         }
@@ -596,9 +609,6 @@ fun Greeting(name: String) {
                         )
 
                     }
-
-
-
 
 
                 }
@@ -672,7 +682,9 @@ fun Greeting(name: String) {
                                         Image(
                                             painter = painterResource(R.drawable.retangulo),
                                             contentDescription = "Imagem",
-                                            modifier = Modifier.fillMaxWidth().height(80.dp)
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(80.dp)
                                         )
                                         Text(
                                             text = "100 pontos",
@@ -710,158 +722,223 @@ fun Greeting(name: String) {
                             }
                         }
 
-                            Box(
-                                modifier = Modifier
-                                    .padding(top = 10.dp)
-                                    .size(40.dp)
-                                    .align(Alignment.CenterStart)
-                                    .offset(x = (-1).dp)
-                                    .background(Color.White, shape = CircleShape)
-                            ) {
-
-                            }
-                            Box(
-                                modifier = Modifier
-                                    .padding(top = 10.dp)
-                                    .size(40.dp)
-                                    .align(Alignment.CenterEnd)
-                                    .offset(x = (2).dp)
-                                    .background(Color.White, shape = CircleShape)
-                            )
-                        }
-
-                        // Segundo Card
-
                         Box(
                             modifier = Modifier
+                                .padding(top = 10.dp)
+                                .size(40.dp)
+                                .align(Alignment.CenterStart)
+                                .offset(x = (-1).dp)
+                                .background(Color.White, shape = CircleShape)
+                        ) {
+
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 10.dp)
+                                .size(40.dp)
+                                .align(Alignment.CenterEnd)
+                                .offset(x = (2).dp)
+                                .background(Color.White, shape = CircleShape)
+                        )
+                    }
+
+                    // Segundo Card
+
+                    Box(
+                        modifier = Modifier
+                            .height(130.dp)
+                            .fillMaxWidth()
+                    )
+                    {
+
+                        Card(
+                            modifier = Modifier
+                                .width(400.dp)
                                 .height(130.dp)
-                                .fillMaxWidth()
+                                .padding(start = 25.dp, end = 25.dp, top = 15.dp),
+                            shape = RoundedCornerShape(15.dp),
+                            backgroundColor = Color(181, 116, 48)
                         )
                         {
 
-                            Card(
-                                modifier = Modifier
-                                    .width(400.dp)
-                                    .height(130.dp)
-                                    .padding(start = 25.dp, end = 25.dp, top = 15.dp),
-                                shape = RoundedCornerShape(15.dp),
-                                backgroundColor = Color(181, 116, 48)
+
+                            Row(
+                                modifier = Modifier.padding(bottom = 25.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Image(
+                                    painter = painterResource(R.drawable.logo_carrefour),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(120.dp)
+                                        .padding(start = 10.dp)
+
+                                )
+
+                            }
+
+                            Column(
+                                modifier = Modifier.padding(start = 80.dp, top = 15.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
                             )
                             {
 
+                                Text(
+                                    modifier = Modifier,
+                                    textAlign = TextAlign.Justify,
+                                    text = "25% OFF",
+                                    fontSize = 16.sp,
+                                    color = Color.White
+                                )
 
-                                Row(
-                                    modifier = Modifier.padding(bottom = 25.dp),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Image(
-                                        painter = painterResource(R.drawable.logo_carrefour),
-                                        contentDescription = null,
+                                Text(
+                                    modifier = Modifier,
+                                    //textAlign = TextAlign.Center,
+                                    text = "Em compras Carrefour",
+                                    fontSize = 16.sp,
+                                    color = Color.White
+                                )
+
+                                Row() {
+
+                                    Box(
                                         modifier = Modifier
-                                            .size(120.dp)
-                                            .padding(start = 10.dp)
-
-                                    )
-
-                                }
-
-                                Column(
-                                    modifier = Modifier.padding(start = 80.dp, top = 15.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                )
-                                {
-
-                                    Text(
-                                        modifier = Modifier,
-                                        textAlign = TextAlign.Justify,
-                                        text = "25% OFF",
-                                        fontSize = 16.sp,
-                                        color = Color.White
-                                    )
-
-                                    Text(
-                                        modifier = Modifier,
-                                        //textAlign = TextAlign.Center,
-                                        text = "Em compras Carrefour",
-                                        fontSize = 16.sp,
-                                        color = Color.White
-                                    )
-
-                                    Row() {
-
-                                        Box(
+                                            .width(95.dp)
+                                            .height(80.dp)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(R.drawable.retangulo),
+                                            contentDescription = "Imagem",
                                             modifier = Modifier
-                                                .width(95.dp)
+                                                .fillMaxWidth()
                                                 .height(80.dp)
-                                        ) {
-                                            Image(
-                                                painter = painterResource(R.drawable.retangulo),
-                                                contentDescription = "Imagem",
-                                                modifier = Modifier.fillMaxWidth().height(80.dp)
-                                            )
-                                            Text(
-                                                text = "100 pontos",
-                                                modifier = Modifier
-                                                    .align(Alignment.Center),
-                                                color = Color.White,
-                                                fontSize = 14.sp
-                                            )
-                                        }
-
-                                        Spacer(modifier = Modifier.padding(5.dp))
-
-                                        Row(modifier = Modifier.padding(top = 13.dp))
-                                        {
-                                            Button(
-                                                onClick = {
-                                                    val toCupomActivity =
-                                                        Intent(context, CupomCarrefourRes::class.java)
-                                                    context.startActivity(toCupomActivity)
-                                                }, modifier = Modifier
-                                                    .width(92.dp)
-                                                    .height(32.dp),
-                                                colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
-                                            )
-                                            {
-                                                Text(text = "VEJA", color = Color(181, 116, 48))
-
-                                            }
-
-                                        }
-
+                                        )
+                                        Text(
+                                            text = "100 pontos",
+                                            modifier = Modifier
+                                                .align(Alignment.Center),
+                                            color = Color.White,
+                                            fontSize = 14.sp
+                                        )
                                     }
+
+                                    Spacer(modifier = Modifier.padding(5.dp))
+
+                                    Row(modifier = Modifier.padding(top = 13.dp))
+                                    {
+                                        Button(
+                                            onClick = { showAlert.value = true }, modifier = Modifier
+                                                .width(92.dp)
+                                                .height(32.dp),
+                                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
+                                        )
+                                        {
+                                            Text(text = "VEJA", color = Color(181, 116, 48))
+
+                                        }
+
+
+                                        }
+                                }
+
                                 }
                             }
 
 
-                                Box(
-                                    modifier = Modifier
-                                        .padding(top = 10.dp)
-                                        .size(40.dp)
-                                        .align(Alignment.CenterStart)
-                                        .offset(x = (-1).dp)
-                                        .background(Color.White, shape = CircleShape)
-                                ) {
 
-                                }
-                                Box(
-                                    modifier = Modifier
-                                        .padding(top = 10.dp)
-                                        .size(40.dp)
-                                        .align(Alignment.CenterEnd)
-                                        .offset(x = (2).dp)
-                                        .background(Color.White, shape = CircleShape)
-                                )
-                            }
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 10.dp)
+                                .size(40.dp)
+                                .align(Alignment.CenterStart)
+                                .offset(x = (-1).dp)
+                                .background(Color.White, shape = CircleShape)
+                        ) {
 
                         }
-
-
+                        Box(
+                            modifier = Modifier
+                                .padding(top = 10.dp)
+                                .size(40.dp)
+                                .align(Alignment.CenterEnd)
+                                .offset(x = (2).dp)
+                                .background(Color.White, shape = CircleShape)
+                        )
                     }
+
+
+
                 }
+
 
             }
         }
+
+
+
+    }
+
+    if (showAlert.value) {
+
+
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+
+            Card(
+                modifier = Modifier
+                    .width(322.dp)
+                    .height(130.dp)
+                    .clickable {
+                        // Ação de clique do card
+                    }
+            ) {
+                Column(modifier = Modifier.padding(top = 5.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        text = "Deseja Proseguir?",
+
+                        )
+
+                    Text(
+                        text = "Ao clicar em na opção PEGUE, o código aparecerá e ao sair vc não poderá ver ele novamente",
+                        fontSize = 14.sp, modifier = Modifier.padding(start = 15.dp, end =10.dp )
+                    )
+
+
+                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center)
+                    {
+                        Text(
+                            text = "Sim",
+                            modifier = Modifier.clickable {
+                                // Ação para "Sim"
+                            }
+                        )
+
+                        Spacer(modifier = Modifier.padding(8.dp))
+
+                        Text(
+                            text = "Não",
+                            modifier = Modifier.clickable {
+                                // Ação para "Não"
+                            }
+                        )
+                    }
+
+                }
+
+            }
+
+        }
+
+
+
+    }
+
+
+}
+
+
 
 
 
