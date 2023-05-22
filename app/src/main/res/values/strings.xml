@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TelaCupons</string>
+    <string name="texto">Ganhe pontos para trocar com recompensas exclusivas com nossos parceiros,
+        acumule pontos fazendo  reciclagem ou coletando reciclagem</string>
+    <string name="foto_logo"></string>
+    <string name="foto_logo_cupom"></string>
+    <string name="sair_cupom"></string>
+    <string name="logo_mercado"></string>
+    <string name="dispo">Disponíveis</string>
+    <string name="resga">Resgatados</string>
+    <string name="desconto"> 25% OFF</string>
+    <string name="desconto_texto">Em compras Extra</string>
+    <string name="botao_pegue">PEQUE</string>
+    <string name="tp1">Válido em todos os mercados Extra no Brasil.</string>
+
+
+
+</resources>
