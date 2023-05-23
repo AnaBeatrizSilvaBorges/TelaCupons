@@ -91,6 +91,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.PaintingStyle
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.NonDisposableHandle.parent
@@ -442,11 +443,7 @@ fun Greeting(name: String) {
                                     Row(modifier = Modifier.padding(top = 13.dp))
                                     {
                                         Button(
-                                            onClick = {
-                                                val toCupomActivity =
-                                                    Intent(context, CupomActivity::class.java)
-                                                context.startActivity(toCupomActivity)
-                                            }, modifier = Modifier
+                                            onClick = { showAlert.value = true }, modifier = Modifier
                                                 .width(92.dp)
                                                 .height(32.dp),
                                             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
@@ -827,13 +824,19 @@ fun Greeting(name: String) {
                                     Row(modifier = Modifier.padding(top = 13.dp))
                                     {
                                         Button(
-                                            onClick = { showAlert.value = true }, modifier = Modifier
+                                            onClick =  {
+                                                val toCupomActivity =
+                                                    Intent(context, CupomCarrefourRes::class.java)
+                                                context.startActivity(toCupomActivity)
+                                            }, modifier = Modifier
                                                 .width(92.dp)
                                                 .height(32.dp),
                                             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White)
                                         )
                                         {
-                                            Text(text = "VEJA", color = Color(181, 116, 48))
+                                            Text(text = "VEJA",
+                                                color = Color(181, 116, 48))
+
 
                                         }
 
@@ -880,49 +883,119 @@ fun Greeting(name: String) {
 
     if (showAlert.value) {
 
+        Image(
+            painter = painterResource(R.drawable.tela_transparente),
+            contentDescription = "Imagem",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier
+                .fillMaxSize()
+
+        )
+
 
         Box(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
+
+
 
             Card(
                 modifier = Modifier
-                    .width(322.dp)
-                    .height(130.dp)
-                    .clickable {
-                        // Ação de clique do card
-                    }
+                    .width(350.dp)
+                    .height(240.dp)
+                    .border(
+                        BorderStroke(2.dp, Color(107, 177, 115)),
+                        shape = RoundedCornerShape(15.dp)
+                    ),
+                shape = RoundedCornerShape(15.dp), elevation = 20.dp
             ) {
-                Column(modifier = Modifier.padding(top = 5.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(
-                        text = "Deseja Proseguir?",
-
-                        )
+                Column(modifier = Modifier.padding(top = 7.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
                     Text(
-                        text = "Ao clicar em na opção PEGUE, o código aparecerá e ao sair vc não poderá ver ele novamente",
-                        fontSize = 14.sp, modifier = Modifier.padding(start = 15.dp, end =10.dp )
+                        text = "Deseja Prosseguir?", fontSize = 17.sp, modifier = Modifier.padding(top = 8.dp)
+
+                    )
+
+                    Text(
+                        text = "Ao clicar na opção SIM, o código aparecerá na tela e ao sair você não irá conseguir ver ele novamente",
+                        textAlign = TextAlign.Center,
+                        fontSize = 12.sp,
+                        color = Color.Black,
+                        modifier = Modifier.padding(top = 5.dp, start = 20.dp, end = 20.dp)
+                    )
+
+                    Text(
+                        text = "Cupom válido em todos os mercados Extra no Brasil",
+                        textAlign = TextAlign.Center,
+                        fontSize = 15.sp,
+                        color = Color(8, 113, 19),
+                        modifier = Modifier.padding(top = 5.dp, start = 35.dp, end = 35.dp)
+                    )
+
+                    Text(
+                        text = "Nâo é acumulável com outros descontos",
+                        textAlign = TextAlign.Center,
+                        fontSize = 15.sp,
+                        color = Color(8, 113, 19),
+                        modifier = Modifier.padding(top = 5.dp, start = 15.dp, end = 15.dp)
+                    )
+
+                    Text(
+                        text = "Nenhum valor em dinheiro",
+                        textAlign = TextAlign.Center,
+                        fontSize = 15.sp,
+                        color = Color(8, 113, 19),
+                        modifier = Modifier.padding(top = 5.dp, start = 15.dp, end = 15.dp)
                     )
 
 
-                    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center)
+
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
+
+                    )
                     {
-                        Text(
-                            text = "Sim",
-                            modifier = Modifier.clickable {
-                                // Ação para "Sim"
-                            }
-                        )
 
-                        Spacer(modifier = Modifier.padding(8.dp))
-
-                        Text(
-                            text = "Não",
-                            modifier = Modifier.clickable {
-                                // Ação para "Não"
-                            }
+                        Button(
+                            onClick =  {
+                                val toCupomActivity =
+                                    Intent(context, CupomActivity::class.java)
+                                context.startActivity(toCupomActivity)
+                            }, modifier = Modifier
+                                .width(230.dp)
+                                .padding(start = 10.dp)
+                                .height(36.dp),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(8, 113, 19))
                         )
+                        {
+                            Text(
+                                text = "Sim, desejo ver o código",color = Color.White
+                                )
+
+
+                        }
+
+                        Spacer(modifier = Modifier.padding(5.dp))
+
+                        Button(
+                            onClick =  {
+                                val toCupomActivity =
+                                    Intent(context, MainActivity::class.java)
+                                context.startActivity(toCupomActivity)
+                            }, modifier = Modifier
+                                .width(80.dp)
+                                .height(36.dp),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(210, 49, 28))
+                        )
+                        {
+                            Text(
+                                text = "Não", color = Color.White,
+                            )
+
+
+                        }
                     }
 
                 }
